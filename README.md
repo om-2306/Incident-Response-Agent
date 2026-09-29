@@ -1,10 +1,10 @@
-# ⚡ AI Incident Response Agent
+#  AI Incident Response Agent
 
 An AI-powered **Site Reliability Engineering (SRE) incident response system** that helps developers and DevOps teams diagnose production incidents faster by combining **LLM-based reasoning with persistent episodic memory**.
 
 The agent accepts raw production logs or error messages, recalls similar incidents from **Hindsight Memory**, and uses a **Groq-powered LLM** to generate root-cause analysis, remediation commands, and long-term prevention strategies.
 
-## 🏗️ Architecture
+##  Architecture
 
 ```text
                    ┌──────────────────────────┐
@@ -61,7 +61,7 @@ The agent accepts raw production logs or error messages, recalls similar inciden
                    └──────────────────────────┘
 ```
 
-### 🔄 Architecture Workflow
+###  Architecture Workflow
 
 1. **Incident Input** – The SRE provides production logs, error messages, or incident details.
 2. **Incident Processing** – The agent extracts important information such as services, errors, symptoms, and affected components.
@@ -72,7 +72,7 @@ The agent accepts raw production logs or error messages, recalls similar inciden
 7. **Incident Resolution** – The SRE reviews and applies the recommended actions.
 8. **Continuous Learning** – The resolved incident and lessons learned can be stored in episodic memory for future incidents.
 
-## 🚀 Key Features
+##  Key Features
 
 * 🧠 **Episodic Incident Memory** – Recalls similar historical production incidents and their resolutions.
 * 🤖 **AI-Powered Diagnosis** – Uses Groq LLMs to analyze production errors and identify probable root causes.
@@ -83,7 +83,7 @@ The agent accepts raw production logs or error messages, recalls similar inciden
 * 💾 **Local Fallback Memory** – Supports resilient operation when cloud API credentials are unavailable.
 * 🧪 **Synthetic Production Incidents** – Includes realistic database, Redis, Kafka, ALB, and Elasticsearch failure scenarios.
 
-## 🏗️ Technology Stack
+##  Technology Stack
 
 | Technology           | Purpose                     |
 | -------------------- | --------------------------- |

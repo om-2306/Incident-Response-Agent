@@ -1,0 +1,107 @@
+[
+  {
+    "id": "inc-1790689675877",
+    "error": "Error 503: Database connection pool timeout on auth-service",
+    "root_cause": "Memory leak in auth-service v2.1 during high traffic.",
+    "resolution": "Restarted pod, increased max_connections pool limit to 150 in deployment.yaml.",
+    "content": "INCIDENT LOG:\nError 503: Database connection pool timeout on auth-service\n\nROOT CAUSE:\nMemory leak in auth-service v2.1 during high traffic.\n\nRESOLUTION:\nRestarted pod, increased max_connections pool limit to 150 in deployment.yaml.",
+    "metadata": {
+      "type": "incident",
+      "service": "auth-service",
+      "severity": "critical",
+      "timestamp": "2026-09-29T19:17:51.689087"
+    },
+    "tags": [
+      "database",
+      "auth-service",
+      "503",
+      "connection-pool"
+    ],
+    "timestamp": "2026-09-29T19:17:51.689087",
+    "saved_to_hindsight": true
+  },
+  {
+    "id": "inc-1790689678591",
+    "error": "Redis Cache Eviction Storm: OOM killed on redis-master-0",
+    "root_cause": "A rogue cron job was writing unbounded telemetry data to Redis.",
+    "resolution": "Killed cron job telemetry-dump, set maxmemory-policy allkeys-lru in redis.conf.",
+    "content": "INCIDENT LOG:\nRedis Cache Eviction Storm: OOM killed on redis-master-0\n\nROOT CAUSE:\nA rogue cron job was writing unbounded telemetry data to Redis.\n\nRESOLUTION:\nKilled cron job telemetry-dump, set maxmemory-policy allkeys-lru in redis.conf.",
+    "metadata": {
+      "type": "incident",
+      "service": "redis-cache",
+      "severity": "high",
+      "timestamp": "2026-09-29T19:17:55.979905"
+    },
+    "tags": [
+      "redis",
+      "oom",
+      "eviction",
+      "telemetry"
+    ],
+    "timestamp": "2026-09-29T19:17:55.979905",
+    "saved_to_hindsight": true
+  },
+  {
+    "id": "inc-1790689681698",
+    "error": "Kafka Consumer Lag Critical: payment-processor-group exceeding 10k messages",
+    "root_cause": "Downstream PostgreSQL DB locked up due to a missing index on the transactions table.",
+    "resolution": "Added index CREATE INDEX idx_txn_created_at ON transactions(created_at);, restarted consumer pods.",
+    "content": "INCIDENT LOG:\nKafka Consumer Lag Critical: payment-processor-group exceeding 10k messages\n\nROOT CAUSE:\nDownstream PostgreSQL DB locked up due to a missing index on the transactions table.\n\nRESOLUTION:\nAdded index CREATE INDEX idx_txn_created_at ON transactions(created_at);, restarted consumer pods.",
+    "metadata": {
+      "type": "incident",
+      "service": "payment-processor",
+      "severity": "critical",
+      "timestamp": "2026-09-29T19:17:58.693347"
+    },
+    "tags": [
+      "kafka",
+      "postgres",
+      "index",
+      "consumer-lag"
+    ],
+    "timestamp": "2026-09-29T19:17:58.693347",
+    "saved_to_hindsight": true
+  },
+  {
+    "id": "inc-1790689686627",
+    "error": "AWS ALB 502 Bad Gateway: Target group health checks failing for api-gateway",
+    "root_cause": "SSL certificate expired on the internal microservice, causing health check timeouts.",
+    "resolution": "Renewed cert via cert-manager, updated secret api-gateway-tls.",
+    "content": "INCIDENT LOG:\nAWS ALB 502 Bad Gateway: Target group health checks failing for api-gateway\n\nROOT CAUSE:\nSSL certificate expired on the internal microservice, causing health check timeouts.\n\nRESOLUTION:\nRenewed cert via cert-manager, updated secret api-gateway-tls.",
+    "metadata": {
+      "type": "incident",
+      "service": "api-gateway",
+      "severity": "high",
+      "timestamp": "2026-09-29T19:18:01.800354"
+    },
+    "tags": [
+      "aws-alb",
+      "502",
+      "ssl-certificate",
+      "api-gateway"
+    ],
+    "timestamp": "2026-09-29T19:18:01.800354",
+    "saved_to_hindsight": true
+  },
+  {
+    "id": "inc-1790689690221",
+    "error": "Elasticsearch Cluster Red: Unassigned shards on node es-data-03",
+    "root_cause": "Disk watermark exceeded (90% full) on es-data-03 due to unmapped log indices.",
+    "resolution": "Deleted old indices logs-2023.*, increased disk size, triggered shard reallocation.",
+    "content": "INCIDENT LOG:\nElasticsearch Cluster Red: Unassigned shards on node es-data-03\n\nROOT CAUSE:\nDisk watermark exceeded (90% full) on es-data-03 due to unmapped log indices.\n\nRESOLUTION:\nDeleted old indices logs-2023.*, increased disk size, triggered shard reallocation.",
+    "metadata": {
+      "type": "incident",
+      "service": "elasticsearch",
+      "severity": "critical",
+      "timestamp": "2026-09-29T19:18:06.729206"
+    },
+    "tags": [
+      "elasticsearch",
+      "cluster-red",
+      "shards",
+      "disk-watermark"
+    ],
+    "timestamp": "2026-09-29T19:18:06.729206",
+    "saved_to_hindsight": true
+  }
+]
